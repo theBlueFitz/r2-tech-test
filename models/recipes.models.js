@@ -1,6 +1,7 @@
 const db = require('../data/data.json');
 
 exports.fetchRecipes = async (exclude_ingredients = null) => {
+    console.log(exclude_ingredients, 'model')
     if (!exclude_ingredients) {
         const result = await db
         return result
@@ -12,8 +13,6 @@ exports.fetchRecipes = async (exclude_ingredients = null) => {
                 return recipe
             }
         })
-        console.log(result[0])
-        console.log(result.length)
         return result
     }
     

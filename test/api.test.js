@@ -45,7 +45,20 @@ describe('GET /api/recipes', () => {
           expect.not.objectContaining({
             name: 'kale'
           })
-
+        )
+      })
+    })
+  })
+  it ('200: returns a new array with recipes excluding multiple query parameters', async () => {
+    const {body} = await request.get('/api/recipes?exclude_ingredients=kale,bananas').expect(200)
+    expect(body.recipes).toHaveLength(78)
+    expect(body.recipes).not.toEqual(db)
+    body.recipes.forEach((recipe) => {
+      recipe.ingredients.forEach((ingredient) => {
+        expect(ingredient).toEqual(
+          expect.not.objectContaining({
+            name: 'kale'
+          })
         )
       })
     })
