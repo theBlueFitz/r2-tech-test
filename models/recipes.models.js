@@ -1,3 +1,7 @@
 const db = require('../data/data.json');
 
-console.log(db)
+exports.fetchRecipes = async () => {
+    const result = await db
+    console.log(result)
+    return result
+}
