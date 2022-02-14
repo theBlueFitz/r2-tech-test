@@ -2,7 +2,8 @@ const { fetchRecipes } = require("../models/recipes.models")
 
 
 exports.getAllRecipes = async (req,res,next) => {
-    return fetchRecipes()
+    const {exclude_ingredients} = req.query;
+    return fetchRecipes(exclude_ingredients)
     .then((recipes) => {
         res.status(200).send({recipes})
     })
